@@ -1,0 +1,136 @@
+.\" Manpage for gcalcli.
+.TH man 1 "28 September 2024" "4.5.0" "gcalcli Manual"
+.SH NAME
+gcalcli \- interact with a Google Calendar
+.SH SYNOPSIS
+gcalcli [options] command [command args or options]
+.SH DESCRIPTION
+gcalcli is a Python application that allows you to access your Google
+Calendar(s) from a command line. It's easy to get your agenda, search for
+events, add new events, delete events, edit events, and even import those
+annoying ICS/vCal invites from Microsoft Exchange and/or other sources.
+Additionally, gcalcli can be used as a reminder service and execute any
+application you want when an event is coming up.
+.SH USAGE
+
+usage: gcalcli [-h] [--version] [--client-id CLIENT_ID]
+               [--client-secret CLIENT_SECRET] [--noauth_local_server]
+               [--config-folder CONFIG_FOLDER] [--noincluderc]
+               [--calendar GLOBAL_CALENDARS]
+               [--default-calendar DEFAULT_CALENDARS] [--locale LOCALE]
+               [--refresh] [--nocache] [--conky] [--nocolor]
+               [--lineart {fancy,unicode,ascii}]
+               {init,list,search,edit,delete,agenda,agendaupdate,updates,conflicts,calw,calm,quick,add,import,remind,config,util}
+               ...
+
+Google Calendar Command Line Interface
+
+configuration:
+  gcalcli supports a few other configuration mechanisms in addition to
+  the command-line arguments listed below.
+
+  $GCALCLI_CONFIG=~/.config/gcalcli
+    Path to user config directory or file.
+    Note: this path is also used to determine fallback paths to check
+    for cache/oauth files to be migrated into their proper data dir
+    paths.
+
+  ~/.config/gcalcli/config.toml
+    A toml config file where some general-purpose settings can be
+    configured.
+    Schema:
+    https://raw.githubusercontent.com/insanum/gcalcli/HEAD/data/config-schema.json
+
+  gcalclirc @ ~/.config/gcalcli/gcalclirc
+    A flag file listing additional command-line args to always pass,
+    one per line.
+    Note: Use this sparingly and prefer other configuration mechanisms
+    where available. This flag file mechanism can be brittle
+    (example: https://github.com/insanum/gcalcli/issues/513).
+
+positional arguments:
+  {init,list,search,edit,delete,agenda,agendaupdate,updates,conflicts,calw,calm,quick,add,import,remind,config,util}
+                        Invoking a subcommand with --help prints subcommand
+                        usage.
+    init                initialize authentication, etc
+    list                list available calendars
+    search              search for events within an optional time period
+    edit                edit calendar events
+    delete              delete events from the calendar
+    agenda              get an agenda for a time period
+    agendaupdate        update calendar from agenda TSV file
+    updates             get updates since a datetime for a time period
+                        (defaults to through end of current month)
+    conflicts           find event conflicts
+    calw                get a week-based agenda in calendar format
+    calm                get a month agenda in calendar format
+    quick               quick-add an event to a calendar
+    add                 add a detailed event to the calendar
+    import              import an ics/vcal file to a calendar
+    remind              execute command if event occurs within <mins> time
+    config              utility commands to work with configuration
+    util                low-level utility commands for introspection, dumping
+                        schemas, etc
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --client-id CLIENT_ID
+                        API client_id (default: None)
+  --client-secret CLIENT_SECRET
+                        API client_secret (default: None)
+  --noauth_local_server
+                        Provide instructions for authenticating from a remote
+                        system using port forwarding. Note: Previously this
+                        option invoked an "Out-Of-Band" variant of the auth
+                        flow, but that deprecated mechanism is no longer
+                        supported. (default: True)
+  --config-folder CONFIG_FOLDER
+                        Optional directory used to load config files.
+                        Deprecated: prefer $GCALCLI_CONFIG. (default:
+                        ~/.config/gcalcli)
+  --noincluderc         Whether to include ~/.gcalclirc. (default: True)
+  --calendar GLOBAL_CALENDARS
+                        Which calendars to use, in the format "CalendarName"
+                        or "CalendarName#color". Supported here globally for
+                        compatibility purposes, but prefer passing to
+                        individual commands after the command name since this
+                        global version is brittle. (default: [])
+  --default-calendar DEFAULT_CALENDARS
+                        Optional default calendar to use if no --calendar
+                        options are given (default: [])
+  --locale LOCALE       System locale (default: )
+  --refresh             Delete and refresh cached data (default: False)
+  --nocache             Execute command without using cache (default: True)
+  --conky               Use Conky color codes (default: False)
+  --nocolor             Enable/Disable all color output (default: True)
+  --lineart {fancy,unicode,ascii}
+                        Choose line art style for calendars: "fancy": for
+                        VTcodes, "unicode" for Unicode box drawing characters,
+                        "ascii" for old-school plusses, hyphens and pipes.
+                        (default: fancy)
+
+.SH DIAGNOSTICS
+.B "Encoding issues, wrongly printed characters, UnicodeEncodeError when using
+conky, in pipes or scripts"
+.RS
+ - Set an environment variable PYTHONIOENCODING=utf8
+ - Use a Unicode capable font like DejaVu Sans Mono
+ - Set option --lineart=unicode or --lineart=ascii
+.RE
+.B "No colors or garbage characters when using inside conky"
+.RS
+ - Set option --conky
+.RE
+.SH SEE ALSO
+bash(1)
+
+.SH BUG REPORTS
+Report issues at https://github.com/insanum/gcalcli/issues
+.SH AUTHORS
+
+Eric Davis (edavis@insanum.com)
+
+Brian Hartvigsen (brian.andrew@brianandjenny.com)
+
+Joshua Crowgey (jcrowgey@uw.edu)
