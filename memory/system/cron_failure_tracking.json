@@ -1,1 +1,48 @@
-{}
+{
+  "lastCheckAtMs": 1774436400000,
+  "checkTimestamp": "2026-03-26T11:00:00Z",
+  "summary": {
+    "totalJobs": 5,
+    "successCount": 1,
+    "failureCount": 0,
+    "notRunCount": 4,
+    "alertsTriggered": 0
+  },
+  "jobs": {
+    "482ca38b-e52d-4b1a-bf10-90a139e28c44": {
+      "name": "Daily Config Backup",
+      "failureCount": 0,
+      "lastStatus": "success",
+      "lastRunAtMs": 1774447207079,
+      "lastCheckAtMs": 1774436400000
+    },
+    "687c642f-04a2-4bfb-8ed0-d68fe443d5fb": {
+      "name": "Backup Workspace to GitHub (72h)",
+      "failureCount": 0,
+      "lastStatus": "not_run_yet",
+      "nextRunAtMs": 1774578685106,
+      "lastCheckAtMs": 1774436400000
+    },
+    "460019af-dfeb-4bf9-8d25-ec494a1c42fc": {
+      "name": "Security Audit",
+      "failureCount": 0,
+      "lastStatus": "not_run_yet",
+      "nextRunAtMs": 1774706400000,
+      "lastCheckAtMs": 1774436400000
+    },
+    "48feb0b3-fe48-42de-b1c1-2e11a660e5ca": {
+      "name": "API Key Rotation Reminder",
+      "failureCount": 0,
+      "lastStatus": "not_run_yet",
+      "nextRunAtMs": 1774965600000,
+      "lastCheckAtMs": 1774436400000
+    },
+    "e8e059f0-c451-4e29-94d2-6c0c64b5cf7c": {
+      "name": "Backup Interval Review (15d)",
+      "failureCount": 0,
+      "lastStatus": "not_run_yet",
+      "nextRunAtMs": 1775615490530,
+      "lastCheckAtMs": 1774436400000
+    }
+  }
+}
