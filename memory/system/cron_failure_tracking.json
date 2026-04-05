@@ -1,48 +1,69 @@
 {
-  "lastCheckAtMs": 1774436400000,
-  "checkTimestamp": "2026-03-26T11:00:00Z",
+  "lastCheckAtMs": 1775556000000,
+  "checkTimestamp": "2026-04-04T11:00:00Z",
   "summary": {
     "totalJobs": 5,
     "successCount": 1,
-    "failureCount": 0,
-    "notRunCount": 4,
-    "alertsTriggered": 0
+    "failureCount": 3,
+    "notRunCount": 1,
+    "alertsTriggered": 3,
+    "criticalIssue": "Ollama plugin module missing causing cascading failures"
   },
   "jobs": {
-    "482ca38b-e52d-4b1a-bf10-90a139e28c44": {
-      "name": "Daily Config Backup",
-      "failureCount": 0,
-      "lastStatus": "success",
-      "lastRunAtMs": 1774447207079,
-      "lastCheckAtMs": 1774436400000
-    },
-    "687c642f-04a2-4bfb-8ed0-d68fe443d5fb": {
-      "name": "Backup Workspace to GitHub (72h)",
-      "failureCount": 0,
-      "lastStatus": "not_run_yet",
-      "nextRunAtMs": 1774578685106,
-      "lastCheckAtMs": 1774436400000
-    },
     "460019af-dfeb-4bf9-8d25-ec494a1c42fc": {
       "name": "Security Audit",
       "failureCount": 0,
-      "lastStatus": "not_run_yet",
-      "nextRunAtMs": 1774706400000,
-      "lastCheckAtMs": 1774436400000
+      "lastStatus": "success",
+      "lastRunAtMs": 1774706472142,
+      "lastCheckAtMs": 1775556000000,
+      "note": "Last run (2026-03-28) completed successfully. Status: OK. Next run: 2026-04-04 (Sunday)."
+    },
+    "482ca38b-e52d-4b1a-bf10-90a139e28c44": {
+      "name": "Daily Config Backup",
+      "failureCount": 6,
+      "lastStatus": "failed",
+      "lastRunAtMs": 1775224800425,
+      "lastCheckAtMs": 1775556000000,
+      "note": "🔴 CRITICAL: 6 consecutive failures. Error: Cannot find module '../../plugin-sdk/ollama-setup.js'. ALERT TRIGGERED on check 2026-04-04.",
+      "alertSent": true,
+      "alertMessage": "Cron 'Daily Config Backup' falhou 3x consecutivas"
+    },
+    "687c642f-04a2-4bfb-8ed0-d68fe443d5fb": {
+      "name": "Backup Workspace to GitHub (72h)",
+      "failureCount": 2,
+      "lastStatus": "failed",
+      "lastRunAtMs": 1775097085463,
+      "lastCheckAtMs": 1775556000000,
+      "note": "🟡 WARNING: 2 consecutive failures. Error: Cannot find module '../../plugin-sdk/ollama-setup.js'. Scheduled next: 2026-04-07.",
+      "alertSent": false,
+      "nextAction": "Monitor - alert on 3rd failure"
     },
     "48feb0b3-fe48-42de-b1c1-2e11a660e5ca": {
       "name": "API Key Rotation Reminder",
-      "failureCount": 0,
-      "lastStatus": "not_run_yet",
-      "nextRunAtMs": 1774965600000,
-      "lastCheckAtMs": 1774436400000
+      "failureCount": 1,
+      "lastStatus": "failed",
+      "lastRunAtMs": 1774965602317,
+      "lastCheckAtMs": 1775556000000,
+      "note": "🟡 WARNING: 1 failure. Error: Cannot find module '../../plugin-sdk/ollama-setup.js'. Scheduled next: 2026-05-01.",
+      "alertSent": false,
+      "nextAction": "Monitor - alert on 3rd failure"
     },
     "e8e059f0-c451-4e29-94d2-6c0c64b5cf7c": {
       "name": "Backup Interval Review (15d)",
       "failureCount": 0,
       "lastStatus": "not_run_yet",
       "nextRunAtMs": 1775615490530,
-      "lastCheckAtMs": 1774436400000
+      "lastCheckAtMs": 1775556000000,
+      "note": "Not yet executed. Scheduled next: 2026-04-12."
+    }
+  },
+  "systemIssues": {
+    "ollama_plugin_missing": {
+      "severity": "CRITICAL",
+      "affectedJobs": ["Daily Config Backup", "Backup Workspace to GitHub (72h)", "API Key Rotation Reminder"],
+      "error": "Cannot find module '../../plugin-sdk/ollama-setup.js'",
+      "rootCause": "Missing or corrupted Ollama plugin in OpenClaw dist/extensions",
+      "recommendation": "Restart gateway or reinstall OpenClaw to fix missing module"
     }
   }
 }

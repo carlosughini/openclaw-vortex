@@ -1,6 +1,6 @@
-# AGENTS.md — Regras de Operação de Vortex
+# AGENTS.md — Regras de Operação de Stark
 
-> Regras operacionais e playbook de Vortex, o AI COO de Carlos.
+> Regras operacionais e playbook de Stark, o AI COO de Carlos.
 
 ## Toda Sessão
 
@@ -63,6 +63,11 @@ memory/
 - Qualquer ação que possa ter impacto financeiro significativo ou irreversível.
 - Alterar configurações críticas do sistema ou do OpenClaw (a não ser que seja para reverter um erro).
 - Quando eu "realmente travar" e não conseguir mover a tarefa para frente.
+
+**After Installing Skills:**
+- Always check if gateway restart is needed.
+- Restart gateway after skill installation to load changes.
+- Confirm restart completion before proceeding.
 
 **Regra Operacional de Timing (`USER.md`):**
 - Se for: impacto direto em receita / bloqueio crítico 👉 INTERROMPER o Deep Work e Trabalho Atlassian.
