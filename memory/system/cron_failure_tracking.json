@@ -1,69 +1,88 @@
 {
-  "lastCheckAtMs": 1775556000000,
-  "checkTimestamp": "2026-04-04T11:00:00Z",
+  "lastCheckAtMs": 1744277400000,
+  "checkTimestamp": "2026-04-10T11:00:00Z",
+  "checkCycle": "Watchdog - Monitor de Crons",
   "summary": {
     "totalJobs": 5,
-    "successCount": 1,
-    "failureCount": 3,
-    "notRunCount": 1,
-    "alertsTriggered": 3,
-    "criticalIssue": "Ollama plugin module missing causing cascading failures"
+    "successCount": 3,
+    "failureCount": 2,
+    "alertsTriggered": 2,
+    "recovered": 0,
+    "status": "🟡 PARTIAL — 2 jobs failing. Gateway pairing blocking retries."
   },
   "jobs": {
+    "482ca38b-e52d-4b1a-bf10-90a139e28c44": {
+      "name": "Daily Config Backup",
+      "failureCount": 0,
+      "lastStatus": "success",
+      "lastRunAtMs": 1775743200019,
+      "lastCheckAtMs": 1744277400000,
+      "note": "✅ HEALTHY: Last run SUCCESS.",
+      "healthStatus": "nominal"
+    },
+    "687c642f-04a2-4bfb-8ed0-d68fe443d5fb": {
+      "name": "Backup Workspace to GitHub (72h)",
+      "failureCount": 4,
+      "lastStatus": "error",
+      "lastRunAtMs": 1775615485217,
+      "lastError": "Cannot find module 'store.runtime-JxQ2i0jy.js'",
+      "lastCheckAtMs": 1744277400000,
+      "note": "🚨 CRITICAL: 4 consecutive failures. Module error + gateway pairing issue.",
+      "nextRunAtMs": 1775874685217,
+      "healthStatus": "critical",
+      "actionTaken": "Retry attempted — blocked by gateway pairing. 3x threshold exceeded."
+    },
     "460019af-dfeb-4bf9-8d25-ec494a1c42fc": {
       "name": "Security Audit",
       "failureCount": 0,
       "lastStatus": "success",
-      "lastRunAtMs": 1774706472142,
-      "lastCheckAtMs": 1775556000000,
-      "note": "Last run (2026-03-28) completed successfully. Status: OK. Next run: 2026-04-04 (Sunday)."
-    },
-    "482ca38b-e52d-4b1a-bf10-90a139e28c44": {
-      "name": "Daily Config Backup",
-      "failureCount": 6,
-      "lastStatus": "failed",
-      "lastRunAtMs": 1775224800425,
-      "lastCheckAtMs": 1775556000000,
-      "note": "🔴 CRITICAL: 6 consecutive failures. Error: Cannot find module '../../plugin-sdk/ollama-setup.js'. ALERT TRIGGERED on check 2026-04-04.",
-      "alertSent": true,
-      "alertMessage": "Cron 'Daily Config Backup' falhou 3x consecutivas"
-    },
-    "687c642f-04a2-4bfb-8ed0-d68fe443d5fb": {
-      "name": "Backup Workspace to GitHub (72h)",
-      "failureCount": 2,
-      "lastStatus": "failed",
-      "lastRunAtMs": 1775097085463,
-      "lastCheckAtMs": 1775556000000,
-      "note": "🟡 WARNING: 2 consecutive failures. Error: Cannot find module '../../plugin-sdk/ollama-setup.js'. Scheduled next: 2026-04-07.",
-      "alertSent": false,
-      "nextAction": "Monitor - alert on 3rd failure"
-    },
-    "48feb0b3-fe48-42de-b1c1-2e11a660e5ca": {
-      "name": "API Key Rotation Reminder",
-      "failureCount": 1,
-      "lastStatus": "failed",
-      "lastRunAtMs": 1774965602317,
-      "lastCheckAtMs": 1775556000000,
-      "note": "🟡 WARNING: 1 failure. Error: Cannot find module '../../plugin-sdk/ollama-setup.js'. Scheduled next: 2026-05-01.",
-      "alertSent": false,
-      "nextAction": "Monitor - alert on 3rd failure"
+      "lastRunAtMs": 1775311216920,
+      "lastCheckAtMs": 1744277400000,
+      "note": "✅ HEALTHY: Last run SUCCESS.",
+      "nextRunAtMs": 1775916000000,
+      "healthStatus": "nominal"
     },
     "e8e059f0-c451-4e29-94d2-6c0c64b5cf7c": {
       "name": "Backup Interval Review (15d)",
       "failureCount": 0,
-      "lastStatus": "not_run_yet",
-      "nextRunAtMs": 1775615490530,
-      "lastCheckAtMs": 1775556000000,
-      "note": "Not yet executed. Scheduled next: 2026-04-12."
+      "lastStatus": "success",
+      "lastRunAtMs": 1775615490539,
+      "lastCheckAtMs": 1744277400000,
+      "note": "✅ HEALTHY: Last run SUCCESS.",
+      "nextRunAtMs": 1776911490539,
+      "healthStatus": "nominal"
+    },
+    "48feb0b3-fe48-42de-b1c1-2e11a660e5ca": {
+      "name": "API Key Rotation Reminder",
+      "failureCount": 5,
+      "lastStatus": "error",
+      "lastRunAtMs": 1774965600027,
+      "lastError": "Cannot find module '../../plugin-sdk/ollama-setup.js'",
+      "lastCheckAtMs": 1744277400000,
+      "note": "🚨 CRITICAL: 5 consecutive failures. Module error + gateway pairing issue.",
+      "nextRunAtMs": 1782828000000,
+      "healthStatus": "critical",
+      "actionTaken": "Retry attempted — blocked by gateway pairing. Already alerted previously."
     }
   },
   "systemIssues": {
-    "ollama_plugin_missing": {
+    "gateway_pairing": {
       "severity": "CRITICAL",
-      "affectedJobs": ["Daily Config Backup", "Backup Workspace to GitHub (72h)", "API Key Rotation Reminder"],
-      "error": "Cannot find module '../../plugin-sdk/ollama-setup.js'",
-      "rootCause": "Missing or corrupted Ollama plugin in OpenClaw dist/extensions",
-      "recommendation": "Restart gateway or reinstall OpenClaw to fix missing module"
+      "error": "Gateway closed (1008): pairing required",
+      "status": "BLOCKING all cron retries",
+      "action": "Gateway restart + re-pair required"
+    },
+    "module_errors": {
+      "severity": "HIGH",
+      "affectedJobs": ["Backup Workspace to GitHub (72h)", "API Key Rotation Reminder"],
+      "errors": ["store.runtime-JxQ2i0jy.js not found", "ollama-setup.js not found"],
+      "action": "Possible openclaw reinstall or update needed"
     }
-  }
+  },
+  "recommendedActions": [
+    "Run: openclaw gateway restart",
+    "Re-pair if needed",
+    "Check if openclaw needs update/reinstall (missing module files)",
+    "Verify cron jobs recover after restart"
+  ]
 }

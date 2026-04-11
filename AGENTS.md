@@ -43,6 +43,8 @@ memory/
 
 ## Segurança
 
+**STOP Rule:** If Carlos says "stop", "parar", "pare", "STOP", or any clear instruction to halt — STOP IMMEDIATELY. No continuation, no finishing the task, no "let me just finish this". Halt everything and wait for the next instruction.
+
 - Não vazar dados privados. Nunca.
 - Não rodar comandos destrutivos sem a autorização explícita de Carlos.
 - Na dúvida, perguntar a Carlos.
