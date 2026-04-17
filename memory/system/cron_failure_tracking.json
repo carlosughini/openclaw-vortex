@@ -1,6 +1,6 @@
 {
-  "lastCheckAtMs": 1776052800000,
-  "checkTimestamp": "2026-04-12T11:00:00Z",
+  "lastCheckAtMs": 1776337200000,
+  "checkTimestamp": "2026-04-16T11:00:00Z",
   "checkCycle": "Watchdog - Monitor de Crons",
   "summary": {
     "totalJobs": 5,
@@ -8,15 +8,15 @@
     "failureCount": 1,
     "alertsTriggered": 0,
     "recovered": 0,
-    "status": "🟡 PARTIAL — API Key Rotation Reminder still failing (ollama module). Non-critical: next scheduled run is Oct 2026."
+    "status": "🟢 4/5 HEALTHY — API Key Rotation Reminder degraded (ollama module). Non-critical: next run Oct 2026."
   },
   "jobs": {
     "482ca38b-e52d-4b1a-bf10-90a139e28c44": {
       "name": "Daily Config Backup",
       "failureCount": 0,
       "lastStatus": "success",
-      "lastRunAtMs": 1775916000016,
-      "lastCheckAtMs": 1776052800000,
+      "lastRunAtMs": 1776261600018,
+      "lastCheckAtMs": 1776337200000,
       "note": "✅ HEALTHY",
       "healthStatus": "nominal"
     },
@@ -24,8 +24,8 @@
       "name": "Backup Workspace to GitHub (72h)",
       "failureCount": 0,
       "lastStatus": "success",
-      "lastRunAtMs": 1775874685228,
-      "lastCheckAtMs": 1776052800000,
+      "lastRunAtMs": 1776133885241,
+      "lastCheckAtMs": 1776337200000,
       "note": "✅ HEALTHY",
       "healthStatus": "nominal"
     },
@@ -34,8 +34,8 @@
       "failureCount": 0,
       "lastStatus": "success",
       "lastRunAtMs": 1775916055800,
-      "lastCheckAtMs": 1776052800000,
-      "note": "✅ HEALTHY — last run Apr 11, next Apr 18",
+      "lastCheckAtMs": 1776337200000,
+      "note": "✅ HEALTHY — next run Apr 19",
       "nextRunAtMs": 1776520800000,
       "healthStatus": "nominal"
     },
@@ -44,22 +44,22 @@
       "failureCount": 0,
       "lastStatus": "success",
       "lastRunAtMs": 1775615490539,
-      "lastCheckAtMs": 1776052800000,
+      "lastCheckAtMs": 1776337200000,
       "note": "✅ HEALTHY — next run ~Apr 20",
       "nextRunAtMs": 1776911490539,
       "healthStatus": "nominal"
     },
     "48feb0b3-fe48-42de-b1c1-2e11a660e5ca": {
       "name": "API Key Rotation Reminder",
-      "failureCount": 7,
+      "failureCount": 8,
       "lastStatus": "error",
       "lastRunAtMs": 1774965600027,
       "lastError": "Cannot find module '../../plugin-sdk/ollama-setup.js'",
-      "lastCheckAtMs": 1776052800000,
-      "note": "⚠️ NON-CRITICAL: ollama module error persists. Next scheduled run Oct 2026. No action needed now.",
+      "lastCheckAtMs": 1776337200000,
+      "note": "⚠️ NON-CRITICAL: ollama module error. Next run Oct 2026. Not retried — systemic issue.",
       "nextRunAtMs": 1782828000000,
       "healthStatus": "degraded",
-      "actionTaken": "Not retried — ollama module issue is systemic, not transient. Next run months away."
+      "actionTaken": "No retry — ollama module issue is systemic, next run months away."
     }
   },
   "systemIssues": {
@@ -71,7 +71,6 @@
     }
   },
   "recommendedActions": [
-    "No immediate action required. API Key Rotation Reminder will likely self-heal if ollama module is fixed before Oct 2026.",
-    "Consider disabling ollama extension if not in use to prevent this error."
+    "Consider disabling ollama extension if not in use to eliminate this recurring error."
   ]
 }
