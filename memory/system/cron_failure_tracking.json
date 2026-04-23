@@ -1,41 +1,42 @@
 {
-  "lastCheckAtMs": 1776596400000,
-  "checkTimestamp": "2026-04-19T11:00:00Z",
+  "lastCheckAtMs": 1776855600000,
+  "checkTimestamp": "2026-04-22T11:00:00Z",
   "checkCycle": "Watchdog - Monitor de Crons",
   "summary": {
     "totalJobs": 5,
-    "successCount": 4,
-    "failureCount": 1,
+    "successCount": 3,
+    "failureCount": 2,
     "alertsTriggered": 0,
     "recovered": 0,
-    "status": "🟢 4/5 HEALTHY — API Key Rotation Reminder still degraded (ollama module). Next run Oct 2026."
+    "status": "🟡 3/5 HEALTHY — GitHub backup delivery error (consecutiveErrors=1, unchanged). API Key Rotation still degraded (non-critical, next run Oct 2026). No new failures."
   },
   "jobs": {
     "482ca38b-e52d-4b1a-bf10-90a139e28c44": {
       "name": "Daily Config Backup",
       "failureCount": 0,
       "lastStatus": "success",
-      "lastRunAtMs": 1776520800022,
-      "lastCheckAtMs": 1776596400000,
-      "note": "✅ HEALTHY",
+      "lastRunAtMs": 1776780000022,
+      "lastCheckAtMs": 1776855600000,
+      "note": "✅ HEALTHY — ran successfully today",
       "healthStatus": "nominal"
     },
     "687c642f-04a2-4bfb-8ed0-d68fe443d5fb": {
       "name": "Backup Workspace to GitHub (72h)",
-      "failureCount": 0,
-      "lastStatus": "success",
-      "lastRunAtMs": 1776393085250,
-      "lastCheckAtMs": 1776596400000,
-      "note": "✅ HEALTHY",
-      "healthStatus": "nominal"
+      "failureCount": 1,
+      "lastStatus": "error",
+      "lastRunAtMs": 1776652285258,
+      "lastCheckAtMs": 1776855600000,
+      "note": "⚠️ Delivery failed (lastError: Message failed). Backup commit likely succeeded. No new run since last check.",
+      "healthStatus": "degraded",
+      "actionTaken": "Not retried — delivery-only error, consecutiveErrors=1 (<3 threshold). Next run ~Apr 25."
     },
     "460019af-dfeb-4bf9-8d25-ec494a1c42fc": {
       "name": "Security Audit",
       "failureCount": 0,
       "lastStatus": "success",
       "lastRunAtMs": 1776520843915,
-      "lastCheckAtMs": 1776596400000,
-      "note": "✅ HEALTHY — ran yesterday",
+      "lastCheckAtMs": 1776855600000,
+      "note": "✅ HEALTHY",
       "healthStatus": "nominal"
     },
     "e8e059f0-c451-4e29-94d2-6c0c64b5cf7c": {
@@ -43,22 +44,22 @@
       "failureCount": 0,
       "lastStatus": "success",
       "lastRunAtMs": 1775615490539,
-      "lastCheckAtMs": 1776596400000,
-      "note": "✅ HEALTHY — next run ~Apr 21",
+      "lastCheckAtMs": 1776855600000,
+      "note": "✅ HEALTHY — next run ~Apr 23",
       "nextRunAtMs": 1776911490539,
       "healthStatus": "nominal"
     },
     "48feb0b3-fe48-42de-b1c1-2e11a660e5ca": {
       "name": "API Key Rotation Reminder",
-      "failureCount": 11,
+      "failureCount": 12,
       "lastStatus": "error",
       "lastRunAtMs": 1774965600027,
       "lastError": "Cannot find module '../../plugin-sdk/ollama-setup.js'",
-      "lastCheckAtMs": 1776596400000,
-      "note": "⚠️ NON-CRITICAL: ollama module error. Next run Oct 2026. Not retried — systemic issue.",
+      "lastCheckAtMs": 1776855600000,
+      "note": "⚠️ NON-CRITICAL: ollama module error persists. Next scheduled run Oct 2026. Not retried.",
       "nextRunAtMs": 1782828000000,
       "healthStatus": "degraded",
-      "actionTaken": "No retry — ollama module issue is systemic, next run months away."
+      "actionTaken": "No retry — systemic ollama issue, next run months away. Consider disabling ollama extension."
     }
   },
   "systemIssues": {
@@ -66,10 +67,11 @@
       "severity": "LOW",
       "affectedJobs": ["API Key Rotation Reminder"],
       "errors": ["ollama-setup.js not found"],
-      "note": "Only affects this low-priority quarterly job. All other crons healthy."
+      "note": "Only affects this low-priority quarterly job."
     }
   },
   "recommendedActions": [
-    "Consider disabling ollama extension if not in use to eliminate this recurring error."
+    "Consider disabling ollama extension to eliminate recurring error.",
+    "GitHub backup delivery error — monitor next cycle (~Apr 25)."
   ]
 }
